@@ -1,7 +1,7 @@
 <?php 
 function setBalance($amount,$process,$accountNo)
 {
-	$con = new mysqli('localhost','root','','mybank');
+	$con = new mysqli('localhost','root','','web-bank');
 	$array = $con->query("select * from userAccounts where accountNo='$accountNo'");
 	$row = $array->fetch_assoc();
 	if ($process == 'credit') 
@@ -16,7 +16,7 @@ function setBalance($amount,$process,$accountNo)
 }
 function setOtherBalance($amount,$process,$accountNo)
 {
-	$con = new mysqli('localhost','root','','mybank');
+	$con = new mysqli('localhost','root','','web-bank');
 	$array = $con->query("select * from otheraccounts where accountNo='$accountNo'");
 	$row = $array->fetch_assoc();
 	if ($process == 'credit') 
@@ -31,7 +31,7 @@ function setOtherBalance($amount,$process,$accountNo)
 }
 function makeTransaction($action,$amount,$other)
 {
-	$con = new mysqli('localhost','root','','mybank');
+	$con = new mysqli('localhost','root','','web-bank');
 	if ($action == 'transfer')
 	{
 		return $con->query("insert into transaction (action,debit,other,userId) values ('transfer','$amount','$other','$_SESSION[userId]')");
@@ -49,7 +49,7 @@ function makeTransaction($action,$amount,$other)
 }
 function makeTransactionCashier($action,$amount,$other,$userId)
 {
-	$con = new mysqli('localhost','root','','mybank');
+	$con = new mysqli('localhost','root','','web-bank');
 	if ($action == 'transfer')
 	{
 		return $con->query("insert into transaction (action,debit,other,userId) values ('transfer','$amount','$other','$userId')");

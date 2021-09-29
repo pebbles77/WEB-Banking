@@ -35,6 +35,7 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
       <li class="nav-item active">  <a class="nav-link" href="maccounts.php">Accounts</a></li>
       <li class="nav-item ">  <a class="nav-link" href="maddnew.php">Add New Account</a></li>
       <li class="nav-item ">  <a class="nav-link" href="mfeedback.php">Feedback</a></li>
+      <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
       <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
       <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
 
@@ -63,7 +64,7 @@ if (isset($_GET['del']) && !empty($_GET['del']))
   <div class="card-header">
     <strong>All Staff Accounts</strong>  <button class="btn btn-outline-success btn-sm float-right" data-toggle="modal" data-target="#exampleModal">Add New Account</button>
   </div>
-  <div class="card-body">
+  <div class="card-body table-responsive">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -83,7 +84,7 @@ if (isset($_GET['del']) && !empty($_GET['del']))
               echo "<td>".$row['email']."</td>";
               echo "<td>".$row['password']."</td>";
               echo "<td>".$row['type']."</td>";
-              echo "<td><a href='maccounts.php?del=$row[id]' class='btn btn-danger btn-sm'>Delete</a></td>";
+              echo "<td><a href='maccounts.php?del=$row[id]' class='btn alert-danger btn-outline-danger btn-sm'>Delete</a></td>";
               echo "</tr>";
             }
           }

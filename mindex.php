@@ -30,11 +30,12 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="mindex.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link active" href="mindex.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item ">  <a class="nav-link" href="maccounts.php">Accounts</a></li>
       <li class="nav-item ">  <a class="nav-link" href="maddnew.php">Add New Account</a></li>
       <li class="nav-item ">  <a class="nav-link" href="mfeedback.php">Feedback</a></li>
+      <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
       <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
       <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
 
@@ -83,9 +84,9 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
         <td><?php echo $row['accountType'] ?></td>
         <td><?php echo $row['number'] ?></td>
         <td>
-          <a href="show.php?id=<?php echo $row['id'] ?>" class='btn btn-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
-          <a href="mnotice.php?id=<?php echo $row['id'] ?>" class='btn btn-primary btn-sm' data-toggle='tooltip' title="Send notice to this account">Send Notice</a>
-          <a href="mindex.php?delete=<?php echo $row['id'] ?>" class='btn btn-danger btn-sm' data-toggle='tooltip' title="Delete this account">Delete</a>
+          <a href="show.php?id=<?php echo $row['id'] ?>" class='btn alert-success btn-outline-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
+          <a href="mnotice.php?id=<?php echo $row['id'] ?>" class='btn alert-primary btn-outline-primary btn-sm' data-toggle='tooltip' title="Send notice to this account">Send Notice</a>
+          <a href="mindex.php?delete=<?php echo $row['id'] ?>" class='btn alert-danger btn-outline-danger btn-sm' data-toggle='tooltip' title="Delete this account">Delete</a>
         </td>
         
       </tr>

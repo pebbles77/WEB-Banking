@@ -35,6 +35,7 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
       <li class="nav-item ">  <a class="nav-link" href="maccounts.php">Accounts</a></li>
       <li class="nav-item ">  <a class="nav-link" href="maddnew.php">Add New Account</a></li>
       <li class="nav-item ">  <a class="nav-link" href="mfeedback.php">Feedback</a></li>
+      <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
       <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
       <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
 
@@ -51,7 +52,7 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
 
  ?>
 <div class="container">
-<div class="card w-100 text-center shadowBlue">
+<div class="card w-100 text-center shadowBlack">
   <div class="card-header">
     Send Notice to <?php echo $row['name'] ?>
   </div>

@@ -2,11 +2,11 @@
 <html>
 
 <head>
-	<title>Banking</title>
+	<title>WEB-Banking</title>
 	<?php require 'assets/autoloader.php'; ?>
 	<?php require 'assets/function.php'; ?>
 	<?php
-	$con = new mysqli('localhost', 'root', '', 'mybank');
+	$con = new mysqli('localhost', 'root', '', 'web-bank');
 	define('bankName', 'WEB-BANK', true);
 
 	$error = "";
@@ -26,7 +26,7 @@
 			$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
 		}
 	}
-	if (isset($_POST['cashierLogin'])) {
+	if (isset($_POST['staffLogin'])) {
 		$error = "";
 		$user = $_POST['email'];
 		$pass = $_POST['password'];
@@ -42,7 +42,7 @@
 			$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
 		}
 	}
-	if (isset($_POST['managerLogin'])) {
+	if (isset($_POST['adminLogin'])) {
 		$error = "";
 		$user = $_POST['email'];
 		$pass = $_POST['password'];
@@ -113,7 +113,7 @@
 					<form method="POST">
 						<input type="email" name="email" class="form-control" required placeholder="Enter Email">
 						<input type="password" name="password" class="form-control" required placeholder="Enter Password">
-						<button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="managerLogin">Enter </button>
+						<button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="adminLogin">Enter </button>
 					</form>
 				</div>
 			</div>
@@ -131,7 +131,7 @@
 					<form method="POST">
 						<input type="email" name="email" class="form-control" required placeholder="Enter Email">
 						<input type="password" name="password" class="form-control" required placeholder="Enter Password">
-						<button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="cashierLogin">Enter </button>
+						<button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="staffLogin">Enter </button>
 					</form>
 				</div>
 			</div>

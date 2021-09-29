@@ -49,7 +49,7 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
   $row = $array->fetch_assoc();
  ?>
 <div class="container">
-<div class="card w-100 text-center shadowBlue">
+<div class="card w-100 text-center shadowBlack">
   <div class="card-header">
     Account profile for <?php echo $row['name'];echo "<kbd>#";echo $row['accountNo'];echo "</kbd>"; ?>
   </div>
