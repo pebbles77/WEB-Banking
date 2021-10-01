@@ -81,12 +81,39 @@ if (!isset($_SESSION['managerId'])) {
                   
                </tbody>
             </table>
-            <a href="accepted_account.php" class="btn alert-info btn-outline-info btn-block" title="Accept this Form">Accept</a>
+            <a href="maddnew.php" class="btn alert-warning btn-outline-warning btn-block" title="Approve this Form">Approve</a>
+            <!-- <button type="button"class="btn alert-primary btn-outline-primary btn-block" data-toggle="modal" data-target="#exampleModal" title="Approve this Form">Approve</button> -->
+            <a href="mapplicationRequest.php" class="btn alert-secondary btn-outline-secondary btn-block" title="Back to application requests page">Go Back</a>
          </div>
          <div class="card-footer text-muted">
             <?php echo bankname; ?>
          </div>
       </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Send Email to Applicant</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST">
+             
+              <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Applicant's Email">
+              <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Initial Password">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" name="sendMail" class="btn btn-primary">Send Mail</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </body>
 

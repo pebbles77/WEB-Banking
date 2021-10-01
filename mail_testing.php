@@ -7,12 +7,12 @@ require_once "src/PHPMailer.php";
 require_once "src/SMTP.php";
 require_once "src/Exception.php";
 
-$email = "";
-$name = "";
+$email = " $_POST[email] ";
+$name = "$_POST[full_name]";
 
 $mail = new PHPMailer(true);
 
-$mail->SMTPDebug = 0;
+$mail->SMTPDebug = 0; //0 or 2
 
 $mail->isSMTP();
 
@@ -42,9 +42,18 @@ $mail->SMTPOptions = array(
 
    $mail->isHTML(true);
 
-   $mail->Subject = "this is test";
+   $mail->Subject = "About Application Form Response";
 
-   $mail->Body = "Congrats";
+   $message =  "
+   <table>
+      <tr><td>Name: </td><td>" . $_POST["full_name"] . "</td></tr>
+      <tr><td>Mobile No.: </td><td>" . $_POST["mobile_number"] . "</td></tr>
+      <tr><td>Email: </td><td>" . $_POST["email"] . "</td></tr>
+      <tr><td>Message: </td><td>" . $_POST["message"] . "</td></tr>
+   </table>
+   ";
+
+   $mail->Body = $message;
 
    try{
       $mail->send();

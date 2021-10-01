@@ -14,10 +14,10 @@
    $error = "";
 
    if (isset($_POST['registerButton'])) {
-      if (!$con->query("insert into applyaccounts (salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno) values ('$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]')")) {
-         echo "<div claass='alert alert-danger'>Failed. Error is:" . $con->error . "</div>";
+      if (!$con->query("insert into applyaccounts (accountType,salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno,source) values ('$_POST[accountType]','$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]','$_POST[source]')")) {
+         echo "<div claass='alert alert-light'>Failed. Error is:" . $con->error . "</div>";
       } else
-         echo "<div class='alert alert-info text-center'>Application Form for new account submitted successfully</div>";
+         echo "<div class='alert alert-warning text-center'>Application Form for new account submitted successfully</div>";
    }
 
 
@@ -42,18 +42,16 @@
          <div class="card-body">
             <form action="" method="POST">
                <div class="form-group">
-                  <!-- <div class="card-header">
-                     <strong>Do you have this type of account at WEB-bank?</strong>
-                     <br>
-                     <label class="radio radio-inline mr-5 mt-2">
-                        <input type="radio" name="account_exist" value="Yes">&nbsp;YES
-                     </label>
-                     <label class="radio radio-inline ml- mt-2">
-                        <input type="radio" name="account_exist" value="No" checked>&nbsp;NO
-                     </label>
-                  </div> -->
                   <div class="text-left">
-                     <br> <strong>Salutation *</strong> &nbsp; &nbsp; &nbsp;
+                     <br> 
+                     <strong>Account Type *</strong> &nbsp; &nbsp; &nbsp;
+                     <label class="radio radio-inline mr-4">
+                        <input type="radio" name="accountType" value="saving" checked>&nbsp;Saving
+                     </label>
+                     <label class="radio radio-inline mr-4">
+                        <input type="radio" name="accountType" value="current">&nbsp;Current
+                     </label> <hr>
+                      <strong>Salutation *</strong> &nbsp; &nbsp; &nbsp;
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="salutation" value="MR" checked>&nbsp;MR
                      </label>
@@ -62,7 +60,7 @@
                      </label>
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="salutation" value="MRS">&nbsp;MRS
-                     </label>
+                     </label> <hr>
                   </div>
                </div>
                <div class="row">
@@ -95,13 +93,17 @@
                      <label for="citizenship" class="form-label mt-2"><strong>Citizenship Number *</strong></label>
                      <input type="number" class="form-control" id="citizenship" name="citizenship" required>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                      <label for="inputEmail" class="form-label mt-2"><strong>Email *</strong></label>
                      <input type="email" class="form-control" id="inputEmail" name="email" required>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                      <label for="phone" class="form-label mt-2"><strong> Mobile Number *</strong></label>
                      <input type="tel" class="form-control" id="phone" name="phone" pattern="+977[9]{1}[8]{1}[0-9]{8}" value="+977" required>
+                  </div>
+                  <div class="col-md-4">
+                     <label for="inputSource" class="form-label mt-2"> <strong> Source of Income *</strong></label>
+                     <input name="source" class="form-control" id="inputSource" required>
                   </div>
                   <div class="col-md-4">
                      <label for="inputDistrict" class="form-label mt-2"> <strong>District *</strong> </label>
