@@ -6,6 +6,9 @@ if (!isset($_SESSION['managerId'])) {
 ?>
 <!DOCTYPE html>
 <html>
+  
+  
+  
 
 <head>
   <title>Banking</title>
