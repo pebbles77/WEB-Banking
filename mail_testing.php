@@ -7,6 +7,9 @@ require_once "src/PHPMailer.php";
 require_once "src/SMTP.php";
 require_once "src/Exception.php";
 
+$email = "";
+$name = "";
+
 $mail = new PHPMailer(true);
 
 $mail->SMTPDebug = 0;
@@ -35,7 +38,7 @@ $mail->SMTPOptions = array(
    $mail->From = "teams.webbank@gmail.com";
    $mail->FromName = "WEB Bank";
 
-   $mail->addAddress("adeleroops@gmail.com");
+   $mail->addAddress($email);
 
    $mail->isHTML(true);
 

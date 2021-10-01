@@ -17,7 +17,7 @@
       if (!$con->query("insert into applyaccounts (salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno) values ('$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]')")) {
          echo "<div claass='alert alert-danger'>Failed. Error is:" . $con->error . "</div>";
       } else
-         echo "<div class='alert alert-success text-center'>Application Form for new account submitted successfully</div>";
+         echo "<div class='alert alert-info text-center'>Application Form for new account submitted successfully</div>";
    }
 
 

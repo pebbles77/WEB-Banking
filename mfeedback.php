@@ -90,6 +90,8 @@ if (!isset($_SESSION['managerId'])) {
           <?php echo bankname; ?>
         </div>
       </div>
+      </div>
+      </div> 
 </body>
 
 </html>

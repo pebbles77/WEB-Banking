@@ -40,6 +40,70 @@ if (!isset($_SESSION['managerId'])) {
       <?php include 'msideButton.php'; ?>
     </div>
   </nav><br><br><br>
+  <div class="container">
+    <div class="card text-center shadowBlack">
+      <div class="card-header">
+        <strong>Application Requests from Customer</strong>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-sm text-dark">
+            <thead class="alert-info">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Salutation</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Citizenship Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">District</th>
+                <th scope="col">VDC/Municipality</th>
+                <th scope="col">Ward No</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $i = 0;
+              $array = $con->query("select * from applyaccounts");
+              if ($array->num_rows > 0) {
+                while ($row = $array->fetch_assoc()) {
+                  $i++;
+              ?>
+                  <tr>
+                    <th scope="row"><?php echo $i ?></th>
+                    <td><?php echo $row['salutation'] ?></td>
+                    <td><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname'] ?></td>
+                    <td><?php echo $row['dateofbirth'] ?></td>
+                    <td><?php echo $row['gender'] ?></td>
+                    <td><?php echo $row['citizenship'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
+                    <td><?php echo $row['mobilenumber'] ?></td>
+                    <td><?php echo $row['district'] ?></td>
+                    <td><?php echo $row['vdc_municipality'] ?></td>
+                    <td><?php echo $row['wardno'] ?></td>
+                    <td>
+                    <a href="verification.php?id=<?php echo $row['id'] ?>" class='btn alert-success btn-outline-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
+                    </td>
+                    <!-- <td>
+                    <a href="mapplicationRequest.php?delete=<?php echo $row['id'] ?>" class='btn alert-danger btn-outline-danger btn-sm' data-toggle='tooltip' title="Archive this user data">Archive</a>
+                    </td> -->
+                  </tr>
+              <?php
+                }
+              }
+              ?>
+            </tbody>
+          </table>
+          <div class="card-footer text-muted">
+            <?php echo bankname; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
