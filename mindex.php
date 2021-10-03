@@ -72,6 +72,8 @@ if (!isset($_SESSION['managerId'])) {
                 while ($row = $array->fetch_assoc()) {
                   $i++;
               ?>
+              
+              
                   <tr>
                     <th scope="row"><?php echo $i ?></th>
                     <td><?php echo $row['name'] ?></td>
