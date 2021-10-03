@@ -7,8 +7,13 @@ require_once "src/PHPMailer.php";
 require_once "src/SMTP.php";
 require_once "src/Exception.php";
 
+require 'assets/db.php';
+require 'assets/function.php';
+
+
+
 $email = " $_POST[email] ";
-$name = "$_POST[full_name]";
+$name = "$_POST[name]";
 
 $mail = new PHPMailer(true);
 
@@ -42,22 +47,17 @@ $mail->SMTPOptions = array(
 
    $mail->isHTML(true);
 
-   $mail->Subject = "About Application Form Response";
+   $mail->Subject = "About Application Form Approval From WEB-Bank";
 
-   $message =  "
-   <table>
-      <tr><td>Name: </td><td>" . $_POST["full_name"] . "</td></tr>
-      <tr><td>Mobile No.: </td><td>" . $_POST["mobile_number"] . "</td></tr>
-      <tr><td>Email: </td><td>" . $_POST["email"] . "</td></tr>
-      <tr><td>Message: </td><td>" . $_POST["message"] . "</td></tr>
-   </table>
-   ";
+   $message = "Hi ". $name.", <br><br> Your application form has been approved by WEB-Bank. 
+   <br><br> You can now log into your account with the email id and password that you provided in the application
+   form. <br><br> With Regards, <br> WEB-Bank team";
 
    $mail->Body = $message;
 
    try{
       $mail->send();
-      echo "Msg sent successfully";
+      echo "<h5>Mail sent successfully</h5>";
    }catch(Exception $e){
       echo "Mailer error: ". $mail->ErrorInfo;
    }

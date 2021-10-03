@@ -39,7 +39,7 @@ if (!isset($_SESSION['managerId'])) {
          </ul>
          <?php include 'msideButton.php'; ?>
       </div>
-   </nav><br><br><br>
+   </nav><br><br><br> <br> <br>
    <?php
    $array = $con->query("select * from applyaccounts where id ='$_GET[id]'");
    $row = $array->fetch_assoc();
@@ -81,8 +81,8 @@ if (!isset($_SESSION['managerId'])) {
                   
                </tbody>
             </table>
-            <a href="maddnew.php" class="btn alert-warning btn-outline-warning btn-block" title="Approve this Form">Approve</a>
-            <!-- <button type="button"class="btn alert-primary btn-outline-primary btn-block" data-toggle="modal" data-target="#exampleModal" title="Approve this Form">Approve</button> -->
+            <!-- <a href="maddnew.php" class="btn alert-warning btn-outline-warning btn-block" title="Approve this Form">Approve</a> -->
+            <button type="button"class="btn alert-warning btn-outline-warning btn-block" data-toggle="modal" data-target="#exampleModal" title="Approve this Form">Approve</button>
             <a href="mapplicationRequest.php" class="btn alert-secondary btn-outline-secondary btn-block" title="Back to application requests page">Go Back</a>
          </div>
          <div class="card-footer text-muted">
@@ -101,10 +101,10 @@ if (!isset($_SESSION['managerId'])) {
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST">
-             
+            <form method="POST" action="mail_testing.php">
+            <input class="form-control w-75 mx-auto" type="name" name="name" required placeholder="Applicant's Name">
               <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Applicant's Email">
-              <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Initial Password">
+              
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

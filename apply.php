@@ -14,11 +14,20 @@
    $error = "";
 
    if (isset($_POST['registerButton'])) {
-      if (!$con->query("insert into applyaccounts (accountType,salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno,source) values ('$_POST[accountType]','$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]','$_POST[source]')")) {
-         echo "<div claass='alert alert-light'>Failed. Error is:" . $con->error . "</div>";
-      } else
+      if ($_POST['password'] !== $_POST['password2']) {
+         echo "<div class='alert alert-primary text-center'>Passwords do not match. Please type carefully!</div>";   
+      }
+     elseif(!$con->query("insert into applyaccounts (accountType,salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno,password,password2,source) values ('$_POST[accountType]','$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]','$_POST[password]','$_POST[password2]','$_POST[source]')")) {
+
+         echo "<div class='alert alert-light'>Failed. Error is:" . $con->error . "</div>";
+      } else {
+
+
          echo "<div class='alert alert-warning text-center'>Application Form for new account submitted successfully</div>";
+      }
    }
+
+
 
 
    ?>
@@ -43,15 +52,16 @@
             <form action="" method="POST">
                <div class="form-group">
                   <div class="text-left">
-                     <br> 
+                     <br>
                      <strong>Account Type *</strong> &nbsp; &nbsp; &nbsp;
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="accountType" value="saving" checked>&nbsp;Saving
                      </label>
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="accountType" value="current">&nbsp;Current
-                     </label> <hr>
-                      <strong>Salutation *</strong> &nbsp; &nbsp; &nbsp;
+                     </label>
+                     <hr>
+                     <strong>Salutation *</strong> &nbsp; &nbsp; &nbsp;
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="salutation" value="MR" checked>&nbsp;MR
                      </label>
@@ -60,7 +70,8 @@
                      </label>
                      <label class="radio radio-inline mr-4">
                         <input type="radio" name="salutation" value="MRS">&nbsp;MRS
-                     </label> <hr>
+                     </label>
+                     <hr>
                   </div>
                </div>
                <div class="row">
@@ -117,6 +128,14 @@
                      <label for="inputWard" class="form-label mt-2"> <strong>Ward *</strong></label>
                      <input type="text" name="ward" class="form-control" id="inputWard" required>
                   </div>
+                  <div class="col-md-6">
+                     <label for="inputPassword" class="form-label mt-2"> <strong>Enter Password *</strong> </label>
+                     <input type="password" name="password" class="form-control" id="inputPassword" required>
+                  </div>
+                  <div class="col-md-6">
+                     <label for="inputPassword2" class="form-label mt-2"> <strong>Confirm Password *</strong> </label>
+                     <input type="password" name="password2" class="form-control" id="inputPassword2" required>
+                  </div>
                   <div class="checkbox mt-4">
                      <label style="margin-left: 0;">
                         <input name="terms_conditions" type="checkbox" value="1" required>
@@ -126,7 +145,7 @@
                </div>
                <button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="registerButton">Apply
                </button>
-               <button type="Reset" class="btn btn-secondary btn-block btn-sm">Cancel</button>
+               <a type="button" href="login.php" class="btn btn-secondary btn-block btn-sm">Cancel</a>
             </form>
          </div>
       </div>

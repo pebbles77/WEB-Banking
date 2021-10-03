@@ -6,7 +6,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Banking</title>
+  <title>WEB-Banking</title>
   <?php require 'assets/autoloader.php'; ?>
   <?php require 'assets/db.php'; ?>
   <?php require 'assets/function.php'; ?>
@@ -39,7 +39,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
     <img src="images/logo1.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-      <!--  <i class="d-inline-block  fa fa-building fa-fw"></i> --><?php echo bankname; ?>
+      <?php echo bankname; ?>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
         </li>
         <li class="nav-item "> <a class="nav-link" href="accounts.php">Account Details</a></li>
         <li class="nav-item "> <a class="nav-link" href="statements.php">Transaction History</a></li>
-        <li class="nav-item "> <a class="nav-link" href="transfer.php">Transfer Funds</a></li>
+        <li class="nav-item active "> <a class="nav-link" href="transfer.php">Transfer Funds</a></li>
       </ul>
       <?php include 'sideButton.php'; ?>
 
@@ -60,15 +60,15 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
   </nav><br><br><br>
 <div class="container">
   <div class="card  w-75 mx-auto">
-  <div class="card-header text-center">
-    Funds Transfer
+  <div class="card-header text-center alert-secondary">
+  <b>  Funds Transfer </b>
   </div>
   <div class="card-body">
       <form method="POST">
-          <div class="alert alert-success w-50 mx-auto">
-            <h5>New Transfer</h5>
+          <div class="alert alert-warning w-50 mx-auto text-center">
+            <h5> <b> New Transfer </b></h5>
             <input type="text" name="otherNo" class="form-control " placeholder="Enter Receiver Account number" required>
-            <button type="submit" name="get" class="btn btn-primary btn-bloc btn-sm my-1">Get Account Info</button>
+            <button type="submit" name="get" class="btn alert-primary btn-outline-primary btn-block btn-sm my-1">Get Account Info</button>
           </div>
       </form>
       <?php if (isset($_POST['get'])) 
@@ -88,7 +88,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
                     <input type='text' class='form-control' value='$row2[bankName]' readonly required>
                     Enter Amount for tranfer.
                     <input type='number' name='amount' class='form-control' min='1' max='$userData[balance]' required>
-                    <button type='submit' name='transfer' class='btn btn-primary btn-bloc btn-sm my-1'>Tranfer</button>
+                    <button type='submit' name='transfer' class='btn btn-primary btn-block btn-sm my-1'>Transfer</button>
                   </form>
                 </div>";
           }elseif ($array3->num_rows > 0) {
@@ -103,7 +103,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
                     <input type='text' class='form-control' value='".bankname."' readonly required>
                     Enter Amount for tranfer.
                     <input type='number' name='amount' class='form-control' min='1' max='$userData[balance]' required>
-                    <button type='submit' name='transferSelf' class='btn btn-primary btn-bloc btn-sm my-1'>Tranfer</button>
+                    <button type='submit' name='transferSelf' class='btn btn-primary btn-block btn-sm my-1'>Transfer</button>
                   </form>
                 </div>";
           }
@@ -112,7 +112,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
         }
       } 
       ?>
-    <!-- <h5>Transfer History</h5>
+    <h5>Transfer History</h5>
     <?php
     if (isset($_POST['transferSelf']))
     {
@@ -144,9 +144,9 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
       else
         echo "<div class='alert alert-info'>You have made no transfer yet.</div>";
     ?>  
-  </div> -->
-  <div class="card-footer text-muted text-center">
-   <?php echo bankname ?>
+  </div>
+  <div class="card-footer text text-center alert-secondary">
+  <b> <?php echo bankname ?> </b>
   </div>
 </div>
 

@@ -38,10 +38,6 @@ if (!isset($_SESSION['managerId'])) {
         <li class="nav-item "> <a class="nav-link" href="maddnew.php">Add New Account</a></li>
         <li class="nav-item "> <a class="nav-link" href="mfeedback.php">Feedback</a></li>
         <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
-        <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
-        <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
-
-
       </ul>
       <?php include 'msideButton.php'; ?>
 

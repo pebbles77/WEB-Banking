@@ -48,7 +48,7 @@ if (!isset($_SESSION['managerId'])) {
    <div class="col-md-6">
    <div class="card card-outline-secondary">
    <div class="card-header">
-   <h3 class="mb-0">Contact Form</h3>
+   <h3 class="mb-0">Send Mail to Applicant</h3>
    </div>
    <div class="card-body">
    <form autocomplete="off" class="form" role="form" method="post" action="mail_testing.php">
