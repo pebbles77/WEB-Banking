@@ -38,9 +38,7 @@ if (!isset($_SESSION['managerId'])) {
         <li class="nav-item active"> <a class="nav-link" href="maddnew.php">Add New Account</a></li>
         <li class="nav-item "> <a class="nav-link" href="mfeedback.php">Feedback</a></li>
         <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
-        <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
-        <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
-
+        
 
       </ul>
       <?php include 'msideButton.php'; ?>
@@ -49,10 +47,13 @@ if (!isset($_SESSION['managerId'])) {
   </nav><br><br><br>
   <?php
   if (isset($_POST['saveAccount'])) {
-    if (!$con->query("insert into useraccounts (name,citizenship,accountNo,accountType,city,address,email,password,balance,source,number,branch) values ('$_POST[name]','$_POST[citizenship]','$_POST[accountNo]','$_POST[accountType]','$_POST[city]','$_POST[address]','$_POST[email]','$_POST[password]','$_POST[balance]','$_POST[source]','$_POST[number]','$_POST[branch]')")) {
+    //salt and hash password
+    $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if (!$con->query("insert into useraccounts (name,citizenship,accountNo,accountType,vdc_municipality,address,email,password,balance,source,number,branch) values ('$_POST[name]','$_POST[citizenship]','$_POST[accountNo]','$_POST[accountType]','$_POST[vdc_municipality]','$_POST[address]','$_POST[email]','$hashed_password','$_POST[balance]','$_POST[source]','$_POST[number]','$_POST[branch]')")) {
       echo "<div claass='alert alert-success'>Failed. Error is:" . $con->error . "</div>";
     } else
-      echo "<div class='alert alert-info text-center'>Account added Successfully</div>";
+      echo "<div class='alert alert-info text-center'>Account created Successfully</div>";
   }
   if (isset($_GET['del']) && !empty($_GET['del'])) {
     $con->query("delete from login where id ='$_GET[del]'");
@@ -88,8 +89,8 @@ if (!isset($_SESSION['managerId'])) {
             </tr>
             <tr>
               <th>City</th>
-              <td><input type="text" name="city" class="form-control input-sm" required></td>
-              <th>Address</th>
+              <td><input type="text" name="vdc_municipality" class="form-control input-sm" required></td>
+              <th>District</th>
               <td><input type="text" name="address" class="form-control input-sm" required></td>
             </tr>
             <tr>

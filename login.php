@@ -15,13 +15,21 @@
 		$user = $_POST['email'];
 		$pass = $_POST['password'];
 
-		$result = $con->query("select * from userAccounts where email='$user' AND password='$pass'");
-		if ($result->num_rows > 0) {
-			session_start();
-			$data = $result->fetch_assoc();
-			$_SESSION['userId'] = $data['id'];
-			$_SESSION['user'] = $data;
-			header('location:index.php');
+		$result = $con->query("select * from userAccounts where email='$user'");
+		if($result->num_rows > 0) {
+			while($data = mysqli_fetch_assoc($result)){
+				if(password_verify($pass, $data['password'])){
+					session_start();
+					// $data = $result->fetch_assoc();
+					$_SESSION['userId'] = $data['id'];
+					$_SESSION['user'] = $data;
+					header('location:index.php'); 
+				}
+				else{
+					$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
+				}
+			}
+			
 		} else {
 			$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
 		}
@@ -31,13 +39,21 @@
 		$user = $_POST['email'];
 		$pass = $_POST['password'];
 
-		$result = $con->query("select * from login where email='$user' AND password='$pass'");
+		$result = $con->query("select * from login where email='$user'");
 		if ($result->num_rows > 0) {
-			session_start();
-			$data = $result->fetch_assoc();
-			$_SESSION['cashId'] = $data['id'];
-			//$_SESSION['user'] = $data;
-			header('location:cindex.php');
+			while($data = mysqli_fetch_assoc($result)){
+				if(password_verify($pass, $data['password'])){
+					session_start();
+					// $data = $result->fetch_assoc();
+					$_SESSION['cashId'] = $data['id'];
+					//$_SESSION['user'] = $data;
+					header('location:cindex.php'); 
+				}
+				else{
+					$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
+				}
+			}
+			
 		} else {
 			$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
 		}
@@ -47,18 +63,24 @@
 		$user = $_POST['email'];
 		$pass = $_POST['password'];
 
-		$result = $con->query("select * from login where email='$user' AND password='$pass' AND type='manager'");
-		if ($result->num_rows > 0) {
-			session_start();
-			$data = $result->fetch_assoc();
-			$_SESSION['managerId'] = $data['id'];
-			//$_SESSION['user'] = $data;
-			header('location:mindex.php');
-		} else {
-			$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
+		$result = $con->query("select * from login where email='$user' AND type='manager'");
+		if ($result->num_rows > 0) {while($data = mysqli_fetch_assoc($result)){
+			if(password_verify($pass, $data['password'])){
+				session_start();
+				// $data = $result->fetch_assoc();
+				$_SESSION['managerId'] = $data['id'];
+				//$_SESSION['user'] = $data;
+				header('location:mindex.php'); 
+			}
+			else{
+				$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
+			}
 		}
+		
+	} else {
+		$error = "<div class='alert alert-warning text-center rounded-0'>Username or password wrong try again!</div>";
 	}
-
+}
 	?>
 </head>
 

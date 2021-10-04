@@ -59,7 +59,7 @@ if(!isset($_SESSION['userId'])){ header('location:login.php');}
     </div>
   </nav><br><br><br>
 <div class="container">
-  <div class="card  w-75 mx-auto">
+  <div class="card  w-75 mx-auto shadowBlack">
   <div class="card-header text-center alert-secondary">
   <b>  Funds Transfer </b>
   </div>

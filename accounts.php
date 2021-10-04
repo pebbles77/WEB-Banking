@@ -41,7 +41,7 @@ if (!isset($_SESSION['userId'])) {
   <div class="container">
     <div class="card  w-75 mx-auto">
       <div class="card-header text-center">
-        Your account Information
+       <strong> Your account Information</strong>
       </div>
       <div class="card-body">
         <table class="table table-striped table-secondary w-75 mx-auto">

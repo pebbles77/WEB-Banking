@@ -8,7 +8,7 @@ if (!isset($_SESSION['managerId'])) {
 <html>
 
 <head>
-  <title>Banking</title>
+  <title>WEB-Banking</title>
   <?php require 'assets/autoloader.php'; ?>
   <?php require 'assets/db.php'; ?>
   <?php require 'assets/function.php'; ?>
@@ -38,10 +38,7 @@ if (!isset($_SESSION['managerId'])) {
         <li class="nav-item "> <a class="nav-link" href="maddnew.php">Add New Account</a></li>
         <li class="nav-item "> <a class="nav-link" href="mfeedback.php">Feedback</a></li>
         <li class="nav-item "> <a class="nav-link" href="mapplicationRequest.php">Application Requests</a></li>
-        <!-- <li class="nav-item ">  <a class="nav-link" href="transfer.php">Funds Transfer</a></li> -->
-        <!-- <li class="nav-item ">  <a class="nav-link" href="profile.php">Profile</a></li> -->
-
-
+       
       </ul>
       <?php include 'msideButton.php'; ?>
 
@@ -49,18 +46,24 @@ if (!isset($_SESSION['managerId'])) {
   </nav><br><br><br>
   <?php
   if (isset($_POST['saveAccount'])) {
-    if (!$con->query("insert into login (email,password,type) values ('$_POST[email]','$_POST[password]','cashier')")) {
+     //salt and hash password
+     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if (!$con->query("insert into login (email,password,type) values ('$_POST[email]','$hashed_password','$_POST[type]')")) {
       echo "<div claass='alert alert-success'>Failed. Error is:" . $con->error . "</div>";
-    }
+    }else {          
+
+      echo "<div class='alert alert-primary text-center'>New account created successfully</div>";
+   }
   }
   if (isset($_GET['del']) && !empty($_GET['del'])) {
     $con->query("delete from login where id ='$_GET[del]'");
   }
-  $array = $con->query("select * from login where type='cashier'");
+  $array = $con->query("select * from login ");
 
   ?>
   <div class="container">
-    <div class="card w-100 text-center shadowBlack">
+    <div class="card w-75 mx-auto text-center shadowBlack">
       <div class="card-header">
         <strong>All Staff Accounts</strong> <button class="btn  alert-success btn-outline-success btn-sm float-right" data-toggle="modal" data-target="#exampleModal">Add New Account</button>
       </div>
@@ -69,7 +72,6 @@ if (!isset($_SESSION['managerId'])) {
           <thead>
             <tr>
               <th>Email</th>
-              <th>Password</th>
               <th>Account Type</th>
               <th></th>
             </tr>
@@ -80,7 +82,6 @@ if (!isset($_SESSION['managerId'])) {
               while ($row = $array->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['email'] . "</td>";
-                echo "<td>" . $row['password'] . "</td>";
                 echo "<td>" . $row['type'] . "</td>";
                 echo "<td><a href='maccounts.php?del=$row[id]' class='btn alert-danger btn-outline-danger btn-sm'>Delete</a></td>";
                 echo "</tr>";
@@ -101,7 +102,7 @@ if (!isset($_SESSION['managerId'])) {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New Cashier Account</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Create New Admin/Cashier Account</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -111,6 +112,10 @@ if (!isset($_SESSION['managerId'])) {
               Enter Details
               <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Email">
               <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Password">
+              <select class="form-select w-75 mx-auto btn-block p-2" name="type" aria-label=".form-select-md example">
+                        <option value="cashier" selected>Staff</option>
+                        <option value="manager">Admin</option>
+                     </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

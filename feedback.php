@@ -78,7 +78,7 @@ if (!isset($_SESSION['userId'])) {
         <?php
         if (isset($_POST['send'])) {
           if ($con->query("insert into feedback (message,userId) values ('$_POST[msg]','$_SESSION[userId]')")) {
-            echo "<div class='alert alert-success'>Successfully send</div>";
+            echo "<div class='alert alert-success text-center'>Successfully sent</div>";
           } else
             echo "<div class='alert alert-danger'>Not sent Error is:" . $con->error . "</div>";
         }

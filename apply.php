@@ -13,17 +13,30 @@
    define('bankName', 'WEB-BANK', true);
    $error = "";
 
+   $select = mysqli_query($con, "SELECT email FROM applyaccounts WHERE email = '".$_POST['email']."'") or exit(mysqli_error($con));
+
    if (isset($_POST['registerButton'])) {
-      if ($_POST['password'] !== $_POST['password2']) {
+
+        //salt and hash password
+        $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+
+      //Check if email is already being used or not!
+      if(mysqli_num_rows($select)) {
+         echo "<div class='alert alert-primary text-center'>This email is already being used</div>";
+         
+     }
+     //check if password matches or not
+     elseif ($_POST['password'] !== $_POST['password2']) {
          echo "<div class='alert alert-primary text-center'>Passwords do not match. Please type carefully!</div>";   
       }
-     elseif(!$con->query("insert into applyaccounts (accountType,salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno,password,password2,source) values ('$_POST[accountType]','$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]','$_POST[password]','$_POST[password2]','$_POST[source]')")) {
+      //check if connection is established or not
+     elseif(!$con->query("insert into applyaccounts (accountType,salutation,firstname,middlename,lastname,dateofbirth,gender,citizenship,email,mobilenumber,district,vdc_municipality,wardno,password,source) values ('$_POST[accountType]','$_POST[salutation]','$_POST[firstname]','$_POST[middlename]','$_POST[lastname]','$_POST[dateofbirth]','$_POST[gender]','$_POST[citizenship]','$_POST[email]','$_POST[phone]','$_POST[district]','$_POST[vdc_municipality]','$_POST[ward]','$hashed_password','$_POST[source]')")) {
 
          echo "<div class='alert alert-light'>Failed. Error is:" . $con->error . "</div>";
-      } else {
+      } else {          
 
-
-         echo "<div class='alert alert-warning text-center'>Application Form for new account submitted successfully</div>";
+         echo "<div class='alert alert-primary text-center'>Application Form submitted successfully</div>";
       }
    }
 

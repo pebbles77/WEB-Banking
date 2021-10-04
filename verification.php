@@ -41,8 +41,10 @@ if (!isset($_SESSION['managerId'])) {
       </div>
    </nav><br><br><br> <br> <br>
    <?php
+
    $array = $con->query("select * from applyaccounts where id ='$_GET[id]'");
    $row = $array->fetch_assoc();
+      
    ?>
    <div class="container">
       <div class="card w-100 text-center shadowBlack">
@@ -81,8 +83,8 @@ if (!isset($_SESSION['managerId'])) {
                   
                </tbody>
             </table>
-            <!-- <a href="maddnew.php" class="btn alert-warning btn-outline-warning btn-block" title="Approve this Form">Approve</a> -->
-            <button type="button"class="btn alert-warning btn-outline-warning btn-block" data-toggle="modal" data-target="#exampleModal" title="Approve this Form">Approve</button>
+            <a href="maddnewonline.php?id=<?php echo $row['id'] ?>" class="btn alert-warning btn-outline-warning btn-block" title="Approve this Form and add data to database">Approve</a>
+            
             <a href="mapplicationRequest.php" class="btn alert-secondary btn-outline-secondary btn-block" title="Back to application requests page">Go Back</a>
          </div>
          <div class="card-footer text-muted">
@@ -90,31 +92,7 @@ if (!isset($_SESSION['managerId'])) {
          </div>
       </div>
 
-      <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Send Email to Applicant</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="mail_testing.php">
-            <input class="form-control w-75 mx-auto" type="name" name="name" required placeholder="Applicant's Name">
-              <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Applicant's Email">
-              
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="sendMail" class="btn btn-primary">Send Mail</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    
 </body>
 
 </html>

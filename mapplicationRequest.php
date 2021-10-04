@@ -87,9 +87,7 @@ if (!isset($_SESSION['managerId'])) {
                     <td>
                     <a href="verification.php?id=<?php echo $row['id'] ?>" class='btn alert-success btn-outline-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
                     </td>
-                    <!-- <td>
-                    <a href="mapplicationRequest.php?delete=<?php echo $row['id'] ?>" class='btn alert-danger btn-outline-danger btn-sm' data-toggle='tooltip' title="Archive this user data">Archive</a>
-                    </td> -->
+                   
                   </tr>
               <?php
                 }
