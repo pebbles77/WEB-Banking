@@ -68,7 +68,7 @@ if(!isset($_SESSION['managerId'])){ header('location:login.php');}
     if (isset($_POST['send']))
     {
       if ($con->query("insert into notice (notice,userId) values ('$_POST[notice]','$_POST[userId]')")) {
-        echo "<div class='alert alert-success'>Successfully send</div>";
+        echo "<div class='alert alert-success'>Successfully sent</div>";
       }else
       echo "<div class='alert alert-danger'>Not sent Error is:".$con->error."</div>";
     }

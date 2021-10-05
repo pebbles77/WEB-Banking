@@ -57,7 +57,7 @@ if (!isset($_SESSION['managerId'])) {
   <div class="container">
     <div class="card w-100 text-center shadowBlack">
       <div class="card-header">
-        Account profile for <?php echo $row['name'];
+        Account profile for <?php echo $row['name']; 
                             echo "<kbd>#";
                             echo $row['accountNo'];
                             echo "</kbd>"; ?>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['managerId'])) {
             <tr>
               <td>Branch Name</td>
               <th><?php echo $row['branchName'] ?></th>
-              <td>Brach Code</td>
+              <td>Branch Code</td>
               <th><?php echo $row['branchNo'] ?></th>
             </tr>
             <tr>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['managerId'])) {
               <td>Citizenship</td>
               <th><?php echo $row['citizenship'] ?></th>
               <td>City</td>
-              <th><?php echo $row['city'] ?></th>
+              <th><?php echo $row['vdc_municipality'] ?></th>
             </tr>
             <tr>
               <td>Contact Number</td>

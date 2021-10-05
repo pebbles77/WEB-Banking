@@ -50,7 +50,8 @@ if (!isset($_SESSION['managerId'])) {
     //salt and hash password
     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    if (!$con->query("insert into useraccounts (name,citizenship,accountNo,accountType,vdc_municipality,address,email,password,balance,source,number,branch) values ('$_POST[name]','$_POST[citizenship]','$_POST[accountNo]','$_POST[accountType]','$_POST[vdc_municipality]','$_POST[address]','$_POST[email]','$hashed_password','$_POST[balance]','$_POST[source]','$_POST[number]','$_POST[branch]')")) {
+    if (!$con->query("insert into useraccounts (salutation,name,citizenship,accountNo,accountType,vdc_municipality,address,
+    dateofbirth,gender,email,password,balance,source,number,branch) values ('$_POST[salutation]','$_POST[name]','$_POST[citizenship]','$_POST[accountNo]','$_POST[accountType]','$_POST[vdc_municipality]','$_POST[address]','$_POST[dateofbirth]','$_POST[gender]','$_POST[email]','$hashed_password','$_POST[balance]','$_POST[source]','$_POST[number]','$_POST[branch]')")) {
       echo "<div claass='alert alert-success'>Failed. Error is:" . $con->error . "</div>";
     } else
       echo "<div class='alert alert-info text-center'>Account created Successfully</div>";
@@ -71,6 +72,18 @@ if (!isset($_SESSION['managerId'])) {
           <tbody>
             <tr>
               <form method="POST">
+              <th>Salutation</th>
+                <td> <label class="radio radio-inline mr-4">
+                        <input type="radio" name="salutation" value="MR" checked>&nbsp;MR
+                     </label>
+                     <label class="radio radio-inline mr-4">
+                        <input type="radio" name="salutation" value="MISS">&nbsp;MISS
+                     </label>
+                     <label class="radio radio-inline mr-4">
+                        <input type="radio" name="salutation" value="MRS">&nbsp;MRS
+                     </label></td>
+            </tr>
+            <tr>
                 <th>Name</th>
                 <td><input type="text" name="name" class="form-control input-sm" required></td>
                 <th>Citizenship No</th>
@@ -92,6 +105,17 @@ if (!isset($_SESSION['managerId'])) {
               <td><input type="text" name="vdc_municipality" class="form-control input-sm" required></td>
               <th>District</th>
               <td><input type="text" name="address" class="form-control input-sm" required></td>
+            </tr>
+            <tr>
+              <th>Date of Birth</th>
+              <td><input type="date" class="form-control" id="inputDOB" name="dateofbirth" pattern="[1-2]{1}[0-9]{3}-[0-1]{1}[1-9]{1}-[0-9]{2}" placeholder="1976-10-21" required></td>
+              <th>Gender</th>
+              <td><select class="form-select form-select-md p-2 btn btn-block border" name="gender" aria-label=".form-select-md example">
+                        <option selected>Please select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                     </select></td>
             </tr>
             <tr>
               <th>Email</th>

@@ -15,6 +15,11 @@ if (!isset($_SESSION['managerId'])) {
   <?php require 'assets/autoloader.php'; ?>
   <?php require 'assets/db.php'; ?>
   <?php require 'assets/function.php'; ?>
+  <?php if (isset($_GET['delete'])) {
+    if ($con->query("delete from useraccounts where id = '$_GET[delete]'")) {
+      header("location:mapplicationRequest.php");
+    }
+  } ?>
 </head>
 
 <body>
@@ -62,6 +67,7 @@ if (!isset($_SESSION['managerId'])) {
                 <th scope="col">VDC/Municipality</th>
                 <th scope="col">Ward No</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -86,6 +92,9 @@ if (!isset($_SESSION['managerId'])) {
                     <td><?php echo $row['wardno'] ?></td>
                     <td>
                     <a href="verification.php?id=<?php echo $row['id'] ?>" class='btn alert-success btn-outline-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
+                </td>
+                <td>
+                    <a href="verification.php?delete=<?php echo $row['id'] ?>" class='btn alert-danger btn-outline-danger btn-sm' data-toggle='tooltip' title="Delete this application">Delete</a>
                     </td>
                    
                   </tr>
